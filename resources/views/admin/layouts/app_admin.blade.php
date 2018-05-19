@@ -10,8 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div id="app">
@@ -38,12 +40,25 @@
                         {{--<li class="nav-item">--}}
                             {{--<a href="#" class="nav-link active">Active</a>--}}
                         {{--</li>--}}
+                        <li class="nav-item">
+                            <a href="{{route('admin.index')}}" class="nav-link">Панель состояния</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                                aria-haspopup="true" aria-expanded="false">Блог</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Категории</a>
-                                <a class="dropdown-item" href="#">Материалы</a>
+                                <a class="dropdown-item" href="{{route('admin.category.index')}}">Категории</a>
+                                <a class="dropdown-item" href="{{route('admin.article.index')}}">Материалы </a>
+                                {{--<div class="dropdown-divider"></div>--}}
+                                {{--<a class="dropdown-item" href="#">Action</a>--}}
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">Управление пользователями</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{route('admin.user_managment.user.index')}}">Пользователи</a>
                                 {{--<div class="dropdown-divider"></div>--}}
                                 {{--<a class="dropdown-item" href="#">Action</a>--}}
                             </div>
@@ -92,5 +107,9 @@
         @yield('content')
     </main>
 </div>
+
+<!-- Scripts -->
+<script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

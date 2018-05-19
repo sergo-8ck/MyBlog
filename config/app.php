@@ -160,6 +160,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Our packages
+        Unisharp\Ckeditor\ServiceProvider::class,
+
+
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
+        //Own providers
+        App\Providers\BlogServiceProvider::class,
     ],
 
     /*
