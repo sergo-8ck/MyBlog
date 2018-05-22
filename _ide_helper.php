@@ -12861,7 +12861,12 @@ namespace  {
              */ 
             public static function create($attributes = array())
             {    
-                return \Illuminate\Database\Eloquent\Builder::create($attributes);
+//                return \Illuminate\Database\Eloquent\Builder::create($attributes);
+                $model = new static($attributes);
+
+                $model->save();
+
+                return $model;
             }
          
             /**

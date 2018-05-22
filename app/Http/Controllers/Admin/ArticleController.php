@@ -9,15 +9,24 @@ use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('role:superuser')->only('create');
+        $this->middleware('role:superuser')->only('delete');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $s = $request->input('s');
         return view('admin.articles.index', [
-            'articles' => Article::orderBy('created_at', 'desc')->paginate(10)
+            'articles' => Article::orderBy('created_at', 'desc')
+                ->search($s)
+                ->paginate(10)
         ]);
     }
 

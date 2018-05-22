@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Admin\UserManagment;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+//    public function __construct()
+//    {
+//        $this->middleware(['permission:role->edit','permission:role-delete']);
+//    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +23,16 @@ class UserController extends Controller
      */
     public function index()
     {
+        $users=User::all();
+        $allRoles=Role::all();
+//        foreach($allRoles as $role){
+//            $user->attachRole($role);
+//        }
+
+
         return view('admin.user_managment.users.index', [
-            'users' => User::paginate(10)
+            'users' => User::paginate(10),
+            'allRoles' => $allRoles
         ]);
     }
 
@@ -74,8 +90,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $allRoles=Role::all();
+
         return view('admin.user_managment.users.edit',[
-            'user' => $user
+            'user' => $user,
+            'allRoles' => $allRoles
         ]);
     }
 
@@ -100,10 +119,18 @@ class UserController extends Controller
             'password' => 'nullable|string|min:6|confirmed',
         ]);
 
+        $roles=$request->roles;
+        DB::table('role_user')->where('user_id',$user->id)->delete();
+
+        foreach($roles as $role){
+            $user->attachRole($role);
+        }
+
         $user->name = $request['name'];
         $user->email = $request['email'];
         $request['password'] == null ?: $user->password = bcrypt($request['password']);
         $user->save();
+
 
         return redirect()->route('admin.user_managment.user.index');
     }

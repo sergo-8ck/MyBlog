@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Реестр</title>
 
 
 
@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                Site
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,10 +45,10 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="true" aria-expanded="false">Блог</a>
+                               aria-haspopup="true" aria-expanded="false">Обучение</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{route('admin.category.index')}}">Категории</a>
-                                <a class="dropdown-item" href="{{route('admin.article.index')}}">Материалы </a>
+                                <a class="dropdown-item" href="{{route('admin.category.index')}}">Профессии</a>
+                                <a class="dropdown-item" href="{{route('admin.article.index')}}">Ученики </a>
                                 {{--<div class="dropdown-divider"></div>--}}
                                 {{--<a class="dropdown-item" href="#">Action</a>--}}
                             </div>
@@ -56,12 +56,16 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                               aria-haspopup="true" aria-expanded="false">Управление пользователями</a>
+                               aria-haspopup="true" aria-expanded="false">Управление админами</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{route('admin.user_managment.user.index')}}">Пользователи</a>
+                                <a class="dropdown-item" href="{{route('admin.user_managment.user.index')}}">Администраторы</a>
+                                <a class="dropdown-item" href="{{route('role.index')}}">Роли</a>
+
                                 {{--<div class="dropdown-divider"></div>--}}
                                 {{--<a class="dropdown-item" href="#">Action</a>--}}
                             </div>
+
+
                         </li>
                         {{--<li class="nav-item">--}}
                             {{--<a href="#" class="nav-link">Another link</a>--}}

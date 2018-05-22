@@ -4,15 +4,23 @@
 
 <div class="container">
     @component('admin.components.breadcrumb')
-        @slot('title') Список категорий @endslot
+        @slot('title') Список профессий @endslot
         @slot('parent') Главная @endslot
-        @slot('active') Категории @endslot
+        @slot('active') Профессии @endslot
     @endcomponent
 
     <hr>
-    <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-right">
-        <i class="fa fa-plus-square-o"></i> Создать категорию
+    <a href="{{route('admin.category.create')}}" class="btn btn-primary">
+        <i class="fa fa-plus-square-o"></i> Добавить профессию
     </a>
+
+    <form action="{{ route('admin.category.index') }}" method="get" class="float-right">
+        <div class="form-group float-left">
+            <input type="search" class="form-control" name="s" placeholder="Поиск" value="{{ isset($s) ? $s : '' }}">
+        </div>
+
+
+    </form>
     <br>
     <table class="table table-striped">
         <thead>
@@ -27,7 +35,7 @@
                 <td>{{$category->published}}</td>
                 <td>
 
-                    <form onsubmit="if(confirm('Вы действительно хотите удалить категорию?')){return true}else{return false}" action="{{route('admin.category.destroy',$category)}}"  method="post">
+                    <form onsubmit="if(confirm('Вы действительно хотите удалить профессию?')){return true}else{return false}" action="{{route('admin.category.destroy',$category)}}"  method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         {{csrf_field()}}
                         <a href="{{route('admin.category.edit', $category)}}" class="btn btn-default"><i class="fa fa-edit"></i></a>

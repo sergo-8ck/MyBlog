@@ -4,9 +4,9 @@
 
     <div class="container">
         @component('admin.components.breadcrumb')
-            @slot('title') Создание новости @endslot
+            @slot('title') Добавление ученика @endslot
             @slot('parent') Главная @endslot
-            @slot('active') Новости @endslot
+            @slot('active') Ученики @endslot
         @endcomponent
         <hr>
         <form class="form-horizontal" action="{{route('admin.article.store')}}" method="post">

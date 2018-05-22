@@ -13,12 +13,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $s = $request->input('s');
         return view('admin.categories.index', [
-            'categories' => Category::paginate(10)
+            'categories' => Category::search($s)->paginate(10)
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

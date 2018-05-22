@@ -4,9 +4,9 @@
 
 <div class="container">
     @component('admin.components.breadcrumb')
-        @slot('title') Создание категорий @endslot
+        @slot('title') Добавление профессий @endslot
         @slot('parent') Главная @endslot
-        @slot('active') Категории @endslot
+        @slot('active') Профессии @endslot
     @endcomponent
         <hr>
         <form class="form-horizontal" action="{{route('admin.category.store')}}" method="post">

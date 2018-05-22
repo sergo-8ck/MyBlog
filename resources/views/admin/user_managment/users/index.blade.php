@@ -18,6 +18,7 @@
             <thead>
             <th>Имя</th>
             <th>Email</th>
+            <th>Роль</th>
             <th>Действие</th>
             </thead>
             <tbody>
@@ -25,6 +26,11 @@
                 <tr>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>
+                        @foreach($user->roles as $role)
+                            {{$role->name}}
+                        @endforeach
+                    </td>
                     <td>
 
                         <form onsubmit="if(confirm('Вы действительно хотите удалить пользователя?')){return true}else{return false}" action="{{route('admin.user_managment.user.destroy', $user)}}"  method="post">

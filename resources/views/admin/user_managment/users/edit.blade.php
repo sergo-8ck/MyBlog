@@ -9,7 +9,7 @@
             @slot('active') Пользователи @endslot
         @endcomponent
         <hr>
-        <form class="form-horizontal" action="{{route('admin.user_managment.user.update', $user)}}" method="post">
+        <form class="form-horizontal" action="{{route('admin.user_managment.user.update', $user)}}" method="post" role="form" id="role-form">
             {{ method_field('PUT') }}
             {{ csrf_field() }}
 

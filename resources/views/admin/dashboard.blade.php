@@ -6,21 +6,21 @@
             <div class="col-sm-3">
                 <div class="jumbotron">
                     <button type="button" class="btn btn-primary">
-                        Категорий <span class="badge badge-light">{{$count_categories}}</span>
+                        Профессий <span class="badge badge-light">{{$count_categories}}</span>
                     </button>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="jumbotron">
                     <button type="button" class="btn btn-primary">
-                        Материалов <span class="badge badge-light">{{$count_articles}}</span>
+                        Учеников <span class="badge badge-light">{{$count_articles}}</span>
                     </button>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="jumbotron">
                     <button type="button" class="btn btn-primary">
-                        Посетителей <span class="badge badge-light">4</span>
+                        Администаторов <span class="badge badge-light">{{$count_users}}</span>
                     </button>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <a href="{{route('admin.category.create')}}" class="btn btn-secondary btn-block">Создать категорию</a>
+                <a href="{{route('admin.category.create')}}" class="btn btn-secondary btn-block">Добавить профессию</a>
                 <div class="list-group">
                 @foreach($categories as $category)
 
@@ -51,11 +51,12 @@
             </div>
             </div>
             <div class="col-sm-6">
-                <a href="{{route('admin.article.create')}}" class="btn btn-secondary btn-block">Создать материал</a>
+
+                <a href="{{route('admin.article.create')}}" class="btn btn-secondary btn-block">Добавить ученика</a>
 
                 <div class="list-group">
                     @foreach($articles as $article)
-                        <a href="{{route('admin.article.edit', $category)}}" class="list-group-item list-group-item-action">
+                        <a href="{{route('admin.article.edit', $article)}}" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{$article->title}}</h5>
                             </div>

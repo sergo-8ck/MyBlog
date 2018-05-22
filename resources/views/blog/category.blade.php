@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h2><a href="{{route('article', $article->slug)}}">{{$article->title}}</a></h2>
-                <p>{!! $article->description_short !!}</p>
+                <p>{!! $article->description !!}</p>
             </div>
         </div>
             
