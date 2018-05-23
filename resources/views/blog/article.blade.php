@@ -34,7 +34,8 @@
                             <p><b>Программа обучения:</b>
                                 {{ $article->categories()->pluck('title')->implode(', ') }}</p>
                             <p><b>Дата обучения:</b> {!! $article->date !!}</p>
-                            <p><b>Номер удостоверения:</b> {!! $article->document !!}</p>
+                            <p><b>Номер документа:</b> {!! $article->document !!}</p>
+                            <p><b>Срок действия документа:</b> {!! $article->datedoc !!}</p>
 
                         </div>
                         <div class="col-12 col-sm-6">

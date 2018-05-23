@@ -2,35 +2,29 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="row text-center">
+            <div class="col-sm-4">
                 <div class="jumbotron">
                     <button type="button" class="btn btn-primary">
                         Профессий <span class="badge badge-light">{{$count_categories}}</span>
                     </button>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="jumbotron">
                     <button type="button" class="btn btn-primary">
                         Учеников <span class="badge badge-light">{{$count_articles}}</span>
                     </button>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="jumbotron">
                     <button type="button" class="btn btn-primary">
                         Администаторов <span class="badge badge-light">{{$count_users}}</span>
                     </button>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="jumbotron">
-                    <button type="button" class="btn btn-primary">
-                        Сегодня <span class="badge badge-light">4</span>
-                    </button>
-                </div>
-            </div>
+
         </div>
         <div class="row">
             <div class="col-sm-6">

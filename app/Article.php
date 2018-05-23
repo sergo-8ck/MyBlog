@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class Article extends Model
 {
     //Mass assigned
-    protected $fillable = ['title', 'slug', 'date', 'document', 'description', 'published', 'created_by', 'modified_by'];
+    protected $fillable = ['title', 'slug', 'date', 'document', 'datedoc', 'description', 'published', 'created_by', 'modified_by'];
 
     //Mutators
     public function setSlugAttribute($value){
@@ -32,4 +32,8 @@ class Article extends Model
             ->orWhere('slug', 'like', '%' .$s. '%');
     }
 
+    public function scopeSearchblog($query, $s, $d) {
+        return $query->where('document', 'like', '%' .$s. '%')
+            ->where('date', 'like', '%' .$d. '%');
+    }
 }

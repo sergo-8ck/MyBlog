@@ -1,5 +1,9 @@
 <?php
 
+use \Illuminate\Support\Facades\Input;
+use App\Article;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +15,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('blog.home');
-});
+//Route::get('/', function () {
+//    return view('blog.home');
+//});
+
+Route::get('/', 'HomeController@index');
 
 //Route::post('/comments',function (){
 //    print_r($_POST);
@@ -62,4 +68,17 @@ Route::any('/comments',function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/home', function (){
+    $s = Input::get('s');
+    $d = Input::get('d');
+    if($s != ' '){
+        $artic = Article::where('document', 'like', '%' .$s. '%')
+                            ->where('date', 'like', '%' .$d. '%')
+                            ->get();
+        if(count($artic) > 0)
+            return view('blog.home')->withDetails($artic)->withQuery($s, $d);
+    }
+    return view('blog.home')->withMessage("Данные отсутствуют");
+});
 

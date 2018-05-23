@@ -25,9 +25,13 @@
 {{--<textarea class="form-control" id="description_short" name="description_short">{{$article->description_short or ""}}</textarea>--}}
 
 <label for="">Дата обучения</label>
-<input type="date" name="date" class="form-control" value="{{ old('date', date('Y-m-d')) }}" required>
-<label for="">Номер удостоверения</label>
-<input type="text" class="form-control" name="document" placeholder="Номер удостоверения" value="{{$article->document or ""}}" required>
+<input type="date" name="date" class="form-control" value="{{$article->date or old('date', date('Y-m-d'))}}" required>
+
+<label for="">Номер документа</label>
+<input type="text" class="form-control" name="document" placeholder="Номер документа" value="{{$article->document or ""}}" required>
+
+<label for="">Срок действия документа</label>
+<input type="date" name="datedoc" class="form-control" value="{{$article->datedoc or old('datedoc', date('Y-m-d'))}}" required>
 
 <label for="">Комментарий</label>
 <textarea class="form-control" id="description" name="description">{{$article->description or ""}}</textarea>
