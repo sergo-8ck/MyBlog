@@ -33,13 +33,17 @@
                         <div class="col-12 col-sm-6 py-4">
                             <p><b>Программа обучения:</b>
                                 {{ $article->categories()->pluck('title')->implode(', ') }}</p>
-                            <p><b>Дата обучения:</b> {!! $article->date !!}</p>
+                            <p><b>Дата окончания обучения:</b> {!! $article->date !!}</p>
                             <p><b>Номер документа:</b> {!! $article->document !!}</p>
+                            @if(isset($article->datedoc))
+                            <p><b>Вид документа: </b> свидетельство</p>
                             <p><b>Срок действия документа:</b> {!! $article->datedoc !!}</p>
-
+                            @else
+                            <p><b>Вид документа: </b> диплом</p>
+                            @endif
                         </div>
                         <div class="col-12 col-sm-6">
-                            {!! QrCode::size(200)->margin(2)->generate($_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/blog/article/' . $article->slug); !!}
+                            {!! QrCode::size(200)->margin(2)->generate('http://' . $_SERVER['HTTP_HOST'] . '/blog/article/' . $article->slug); !!}
                         </div>
                     </div>
                 </div>

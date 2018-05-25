@@ -43,9 +43,14 @@ class UserController extends Controller
      */
     public function create()
     {
+        $allRoles=Role::all();
+
         return view('admin.user_managment.users.create', [
-            'user' => []
+            'user' => [],
+            'allRoles' => $allRoles
         ]);
+
+
     }
 
     /**

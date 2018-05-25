@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
 //            $table->text('description_short')->nullable();
             $table->text('date');
             $table->text('document');
-            $table->text('datedoc');
+            $table->text('datedoc')->nullable();
             $table->text('description')->nullable();
 //            $table->string('image')->nullable();
 //            $table->boolean('image_show')->nullable();
