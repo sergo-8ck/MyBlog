@@ -31,7 +31,7 @@
         <tbody>
         @forelse ($categories as $category)
             <tr>
-                <td><a href="{{route('admin.article.index', $category->id)}}">{{$category->title}}</a></td>
+                <td><a href="/admin/article/cat/{{$category->id}}">{{$category->title}}</a></td>
                 <td>{{$category->published}}</td>
                 <td>
 

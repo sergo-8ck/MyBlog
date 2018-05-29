@@ -25,11 +25,17 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $s = $request->input('s');
-//        dd($request->isMethod('get'));
+//        dd($request->getBaseUrl());
 //        dd($request->query());
-        $q = key($request->query());
+        $string = $request->url();
+        $pattern = '/(^.*?\/article\/cat)\/(\d+)/i';
+        $pattern2 = '/(^.*?\/article)/i';
+        $replacement = '$2';
+        $replacement2 = '';
+        $q = preg_replace($pattern, $replacement, $string);
+        $q = preg_replace($pattern2, $replacement2, $q);
 
-
+//        dd($q);
         if($q){
             return view('admin.articles.index', [
                 'articles' => Article::orderBy('articles.created_at', 'desc')
@@ -45,7 +51,7 @@ class ArticleController extends Controller
                 'articles' => Article::orderBy('articles.created_at', 'desc')
                     ->search($s)
                     ->paginate(10),
-                'showCat' => $q
+                'showCat' => ''
             ]);
         }
     }
