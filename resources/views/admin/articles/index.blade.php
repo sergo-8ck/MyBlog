@@ -5,7 +5,11 @@
         @component('admin.components.breadcrumb')
             @slot('title') Список учеников @endslot
             @slot('parent') Главная @endslot
-            @slot('active') Ученики @endslot
+            @slot('active') Ученики
+                @if($showCat)
+                    профессии <b>({{ $category->pluck('title')->implode(', ') }})</b>
+                @endif
+            @endslot
         @endcomponent
         <hr>
             @role('superuser')

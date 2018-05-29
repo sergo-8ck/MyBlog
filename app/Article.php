@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 
@@ -25,11 +26,18 @@ class Article extends Model
 
     public function scopeLastArticles($query, $count)
     {
-        return $query->orderBy('created_at', 'desc')->take($count)->get();
+        return $query->orderBy('articles.created_at', 'desc')->take($count)->get();
     }
     public function scopeSearch($query, $s) {
-        return $query->where('title', 'like', '%' .$s. '%')
-            ->orWhere('slug', 'like', '%' .$s. '%');
+        return $query->where('articles.title', 'like', '%' .$s. '%')
+            ->orWhere('articles.slug', 'like', '%' .$s. '%');
+    }
+
+    public function scopeSearchforcat($query, $q) {
+        return $query->select(DB::raw('articles.*, categories.title as cat_title, categories.id as cat_id'))
+            ->join('categoryables', 'articles.id', '=', 'categoryables.categoryable_id')
+            ->join('categories', 'categoryables.category_id', '=', 'categories.id')
+            ->where('categories.id', $q);
     }
 
     public function scopeSearchblog($query, $s, $d) {

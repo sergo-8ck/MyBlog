@@ -26,6 +26,12 @@ class Category extends Model
         return $this->morphedByMany('App\Article', 'categoryable');
     }
 
+    //hasMany
+    public function article()
+    {
+        return $this->hasOne('App\Article', 'id', 'title');
+    }
+
     public function scopeLastCategories($query, $count)
     {
        return $query->orderBy('created_at', 'desc')->take($count)->get();

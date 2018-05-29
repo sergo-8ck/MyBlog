@@ -6,6 +6,8 @@ use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -23,11 +25,29 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $s = $request->input('s');
-        return view('admin.articles.index', [
-            'articles' => Article::orderBy('created_at', 'desc')
-                ->search($s)
-                ->paginate(10)
-        ]);
+//        dd($request->isMethod('get'));
+//        dd($request->query());
+        $q = key($request->query());
+
+
+        if($q){
+            return view('admin.articles.index', [
+                'articles' => Article::orderBy('articles.created_at', 'desc')
+                    ->search($s)
+                    ->searchforcat($q)
+                    ->paginate(10),
+                'showCat' => $q,
+                'category' => Category::where('id', $q),
+            ]);
+        }
+        else{
+            return view('admin.articles.index', [
+                'articles' => Article::orderBy('articles.created_at', 'desc')
+                    ->search($s)
+                    ->paginate(10),
+                'showCat' => $q
+            ]);
+        }
     }
 
     /**
